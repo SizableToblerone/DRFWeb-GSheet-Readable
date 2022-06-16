@@ -41,17 +41,11 @@ Variables are to be declared at the top of the category they are relevant to.
   'visual visual visual visual visual visual visual visual'; */
 
   grid-template-areas:
-  'label0 system .      result result .      .     '
-  'label1 input1 .      result result .      .     '
-  'label2 input2 units1 notion notion image  image '
-  'label3 input3 units2 tbutt  tbutt  image  image '
-  'label4 input4 units3 tbutt  tbutt  .      .     ';
-  /* grid-template-areas:
-  `label0 system .      result result .      .
-  label1 input1 .      result result  .      .
-  label2 input2 units1 notion notion image  image
-  label3 input3 units2 tbutt  tbutt  image  image
-  label4 input4 units3 tbutt  tbutt  .      .     `; */
+  "label0 system .      result result .      .     "
+  "label1 input1 .      result result .      .     "
+  "label2 input2 units1 notion notion image  image "
+  "label3 input3 units2 tbutt  tbutt  image  image "
+  "label4 input4 units3 tbutt  tbutt  .      .     ";
 
 }
 
@@ -398,18 +392,18 @@ img#barPreview {
   .g_main {
 		background-color: #aaf3;
     grid-template-areas:
-		'result result result '
-	  'result result result '
-		'notion notion .      '
-		'.      .      .      '
-		'label0 system .      '
-	  'label1 input1 .      '
-	  'label2 input2 units1 '
-	  'label3 input3 units2 '
-	  'label4 input4 units3 '
-	  'image  image  .      '
-	  'image  image  .      '
-	  '.      .      .      ';
+			"result result result "
+		  "result result result "
+			"notion notion .      "
+			".      .      .      "
+			"label0 system .      "
+		  "label1 input1 .      "
+		  "label2 input2 units1 "
+		  "label3 input3 units2 "
+		  "label4 input4 units3 "
+		  "image  image  .      "
+		  "image  image  .      "
+		  ".      .      .      ";
 		grid-template-columns: 6rem 8.3rem 4.5rem;
 	  grid-template-rows: repeat(10, 2.3rem);
 
