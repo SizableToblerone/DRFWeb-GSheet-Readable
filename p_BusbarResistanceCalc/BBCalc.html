@@ -55,18 +55,6 @@
   <select oninput='calculate()' id='u2_value'></select>
   <select oninput='calculate()' id='u3_value'></select>
 
-  <div id="answer_box">
-    <div><u>Resistance</u></div>
-    <div id="answer" class='numFormatable'>0.0</div>
-    <select id="ohm_units" oninput="calculate()">
-      <option value='Ω'>Ω</option>
-      <option value='mΩ'>mΩ</option>
-      <option value='μΩ' selected>μΩ</option>
-    </select>
-		<p></p>
-  </div>
-
-	<p class="temperature">at </p>
 
 
   <label for="notationswitch">Notation</label>
@@ -80,6 +68,15 @@
 	<img id="barPreview" src="https://drfengineeringservices.com/wp-content/uploads/2022/06/busbarPreview-300x112.jpg"
 	 alt="Image reminding the user which dimensions are represended by the width, thickness, and length attribues. "/>
 
+	 <div id="answer_box">
+		 <div><u>Resistance</u></div>
+		 <div id="answer" class='numFormatable'>0.0</div>
+		 <select id="ohm_units" oninput="calculate()">
+			 <option value='Ω'>Ω</option>
+			 <option value='mΩ'>mΩ</option>
+			 <option value='μΩ' selected>μΩ</option>
+		 </select>
+	 </div>
 
   <!--
   Table

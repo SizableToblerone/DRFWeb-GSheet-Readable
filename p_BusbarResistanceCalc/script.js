@@ -53,25 +53,46 @@ console.log(`
     resistivity *= 0.7854*10**-6 * 6.4519*10**-4 / 0.3048;
 	  busbarResistance =
 	    resistivity * length / area_across; // * Ωunit_factor[Ωunit];
+		$$('#answer_box div:first-of-type').innerHTML=`<u>Resistance</u> at 20°C`
   }else{
     //imperial
     area_across /= (0.7854*(10**(-6))); // convert to circular mils
 	  busbarResistance =
 	    resistivity * length / area_across; // * Ωunit_factor[Ωunit];
+		$$('#answer_box div:first-of-type').innerHTML=`<u>Resistance</u> at 20°C (68°F)`
   }
 		console.log(`
-area_across after CM conversion ${area_across}
-resistivity ${resistivity}
+	area_across after CM conversion ${area_across}
+	resistivity ${resistivity}
 		`);
 
   // busbarResistance =
   //   resistivity * length / area_across; // * Ωunit_factor[Ωunit];
   resultsArray[0] = busbarResistance;
+  resultsArray[1] = busbarResistance;
 
-	console.log(`busbarResistance ${busbarResistance}`);
+	console.log(`	busbarResistance: ${busbarResistance}`);
+
+	// temperature
+	let tempCoeffs = {
+    copper:.00393,
+    aluminum:.00391,
+    gold:.0034,
+    silver:.0038,
+    tungsten:.005,
+    nickel:.006,
+    iron:.0055,
+    constantan:.000008,
+    nichrome:.00044,
+    calorite:"?",
+    carbon:"?"}
+	α_20 = tempCoeffs[$$('#material').value];
+	ΔT = Math.abs(20-temperature);
+	busbarResistance *= 1 + α_20 * ΔT
+	console.log(`busbarResistance at ${temperature}°C: ${busbarResistance}`);
 
   formatAll();
-
+	// 20°C
   ans.classList.add('flash');
   setTimeout(function () {
     ans.classList.remove('flash');
@@ -127,14 +148,10 @@ function unitSwap() {
     $$("#u1_value").innerHTML = ft_in_select;
     $$("#u2_value").innerHTML = ft_in_select_alt;
     $$("#u3_value").innerHTML = ft_in_select_alt;
-		$$("p.temperature").classList.remove('attatchCelcius');
-		$$("p.temperature").classList.add('attatchFarenheit');
   }else{
     $$("#u1_value").innerHTML = m_cm_select;
     $$("#u2_value").innerHTML = cm_mm_select;
     $$("#u3_value").innerHTML = cm_mm_select;
-		$$("p.temperature").classList.remove('attatchFarenheit');
-		$$("p.temperature").classList.add('attatchCelcius');
   }
   switchSwap($$('#system'));
   calculate();

@@ -1,9 +1,22 @@
-:root {
+/* Jacob Harris's CSS Organization
+CSS rules are divided as follows:
+	- Positioning/Sizing
+		- Responsive Layout
+		- Anti-WordPress
+	- Appearance
+		- Anti-WordPress
+	- Interactivity
+		- Transitions/Animations
+		- JavaScript-related formatting
+Variables are to be declared at the top of the category they are relevant to.
+ */
+
+ :root {
   --switchSlideSize: 1.3rem;
   --switchWidth: 6.6rem;
 }
 
-      /* Grid Positioning */
+/* Positioning/Sizing */
 .gridCenterer {
 	display: grid;
 	justify-content: center;
@@ -29,10 +42,16 @@
 
   grid-template-areas:
   'label0 system .      result result .      .     '
-  'label1 input1 .      result result temptr .     '
+  'label1 input1 .      result result .      .     '
   'label2 input2 units1 notion notion image  image '
   'label3 input3 units2 tbutt  tbutt  image  image '
   'label4 input4 units3 tbutt  tbutt  .      .     ';
+  /* grid-template-areas:
+  `label0 system .      result result .      .
+  label1 input1 .      result result  .      .
+  label2 input2 units1 notion notion image  image
+  label3 input3 units2 tbutt  tbutt  image  image
+  label4 input4 units3 tbutt  tbutt  .      .     `; */
 
 }
 
@@ -130,12 +149,13 @@ input[type='number'] {
   box-sizing: border-box;
   grid-template-areas:
   'label  label'
-  'answer units ';
+  'answer units';
   grid-template-columns: 10rem 4.6rem;
   grid-template-rows: 1.2rem 2.3rem;
-  grid-gap: .5rem .5rem;
+  grid-gap: .5rem;
   align-items: center;
   justify-items: end;
+	justify-self: center;
   grid-auto-flow: column;
 
   /* background-color: #49f3; */
@@ -161,17 +181,6 @@ input[type='number'] {
 
   font-size: 1.5rem;
 }
-p.temperature {
-	grid-area: temptr;
-	justify-self: start;
-}
-.attatchCelcius::after {
-	content: '20°C';
-}
-.attatchFarenheit::after {
-	content: '68°F';
-}
-
 
 input[value="Display in Table"] {
   grid-area: tbutt;
@@ -293,7 +302,8 @@ img#barPreview {
 
 
 
-      /* Animation */
+/* Interactivity */
+	/* Animation */
 .flash {
   transition: background 0s !important;
   background: #5cfd !important;
@@ -373,4 +383,47 @@ img#barPreview {
   transition: opacity .7s ease-out, transform .8s ease-out;
   opacity: 1 !important;
   transform: translateX(0px) !important;
+}
+	/* Responsive Layout */
+
+/* On screens that are 992px or less, set the background color to blue */
+/* @media screen and (max-width: 992px) {
+  body {
+    background-color: blue;
+  }
+} */
+
+/* On screens that are 600px or less, set the background color to olive */
+@media screen and (max-width: 600px) {
+  .g_main {
+		background-color: #aaf3;
+    grid-template-areas:
+		'result result result '
+	  'result result result '
+		'notion notion .      '
+		'.      .      .      '
+		'label0 system .      '
+	  'label1 input1 .      '
+	  'label2 input2 units1 '
+	  'label3 input3 units2 '
+	  'label4 input4 units3 '
+	  'image  image  .      '
+	  'image  image  .      '
+	  '.      .      .      ';
+		grid-template-columns: 6rem 8.3rem 4.5rem;
+	  grid-template-rows: repeat(10, 2.3rem);
+
+  }
+	#answer_box {
+		position: sticky;
+		top: -1.7rem;
+		/* width: 100%; */
+		/* left: 50%; */
+		padding: 0 3rem 0 3rem;
+
+		background-color: #ffff;
+	}
+	label[for="notationswitch"] {
+		transform: translateX(.3rem);
+	}
 }
