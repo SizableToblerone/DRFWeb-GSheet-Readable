@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Busbar Resistance Calculator">
+  <meta name="author" content="Jacob Harris">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta http-equiv="X-Content-Type-Options" content="">
+  <link rel="shortcut icon" href="/atom.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="busbar.css">
+  <title>Busbar Resistance Calculator</title>
+</head>
+<body>
+<!-- <div id="bar_preview_container">
+  <canvas id="bar_preview"></canvas>
+</div> -->
+<div class="gridCenterer">
+<div class="g_main" id="g_main">
+  <label for="material">Material:</label>
+  <label for="length">Length:</label>
+  <label for="width">Width:</label>
+  <label for="thickness">Thickness:</label>
+
+	<label for="measurementSystemSwitch">System:</label>
+  <div name="measurementSystemSwitch" class="switchContainer switchL"
+  onclick="unitSwap()" id='system'>
+    <label style="padding-left: .6rem">Imperial</label>
+    <div class="switchSlide"></div>
+    <label style="padding-right: .6rem">Metric</label>
+  </div>
+
+  <select id="material" oninput="calculate()">
+    <option value='copper'>Copper</option>
+    <option value='aluminum'>Aluminum</option>
+    <option value='gold'>Gold</option>
+    <option value='silver'>Silver</option>
+    <option value='tungsten'>Tungsten</option>
+    <option value='nickel'>Nickel</option>
+    <option value='iron'>Iron</option>
+    <option value='constantan'>Constantan</option>
+    <option value='nichrome'>Nichrome</option>
+    <option value='calorite'>Calorite</option>
+    <option value='carbon'>Carbon</option>
+  </select >
+  <input type="number" min=0 step=1 id="length" value=12
+    oninput="calculate()">
+  <input type="number" min=.1 step=.1 id="width" value=2
+    oninput="calculate()">
+  <input type="number" min=.05 step=.05 id=thickness value=.5
+    oninput="calculate()">
+
+  <select oninput='calculate()' id='u1_value'></select>
+  <select oninput='calculate()' id='u2_value'></select>
+  <select oninput='calculate()' id='u3_value'></select>
+
+  <div id="answer_box">
+    <div><u>Resistance</u></div>
+    <div id="answer" class='numFormatable'>0.0</div>
+    <select id="ohm_units" oninput="calculate()">
+      <option value='Ω'>Ω</option>
+      <option value='mΩ'>mΩ</option>
+      <option value='μΩ' selected>μΩ</option>
+    </select>
+		<p></p>
+  </div>
+
+	<p class="temperature">at </p>
+
+
+  <label for="notationswitch">Notation</label>
+  <div name="numericNotationSwitch" class="switchContainer switchL"
+  onclick="switchSwap(this)" id='notation'>
+    <label style="padding-left: .6rem">Decimal</label>
+    <div class="switchSlide"></div>
+    <label style="padding-right: .6rem">Scientific </label>
+  </div>
+
+	<img id="barPreview" src="https://drfengineeringservices.com/wp-content/uploads/2022/06/busbarPreview-300x112.jpg"
+	 alt="Image reminding the user which dimensions are represended by the width, thickness, and length attribues. "/>
+
+
+  <!--
+  Table
+  -->
+	<!-- <input type="button" value="Display in Table" id="b_storetable"
+	onclick="storeInTable()" class='avia-button'/>
+
+  <table id='ttitle'>
+    <thead>
+      <tr>
+        <th>Resistance</th>
+        <th></th>
+        <th>Material</th>
+        <th>L</th>
+        <th>W</th>
+        <th>T</th>
+      </tr>
+    </thead>
+  </table>
+
+  <div id="t_datatable">
+    <table>
+        <tbody id='t_databody'>
+          <tr class="">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+    </table>
+  </div> -->
+
+</div>
+</div>
+
+
+<!-- camera spin debug controls -->
+<!-- <input type="range" id="camx" min=-50 max=50 oninput="camspin()">
+  <label for="camx" id='camXText'>fewfwe</label>
+<input type="range" id="camy" min=-50 max=50 oninput="camspin()">
+  <label for="camy" id='camYText'>fewfwe</label>
+<input type="range" id="camz" min=-50 max=50 oninput="camspin()">
+  <label for="camz" id='camZText'>fewfwe</label> -->
+
+
+</body>
+</html>
+
+<!-- <script src="three.min.js"></script> -->
+<!-- <script type="javascript"
+src="https://raw.githubusercontent.com/mrdoob/three.js/dev/build/three.min.js">
+</script> -->
+<!-- <script src="FontLoader.js"></script>
+<script src="TextGeometry.js"></script> -->
+<script src="jabridge.js"></script>
+<script src="script.js"></script>

@@ -1,0 +1,376 @@
+:root {
+  --switchSlideSize: 1.3rem;
+  --switchWidth: 6.6rem;
+}
+
+      /* Grid Positioning */
+.gridCenterer {
+	display: grid;
+	justify-content: center;
+}
+.g_main {
+  float: left;
+  display: grid;
+  /* grid-template-columns: 6rem 7rem 4.5rem 10rem 4.8rem  26rem auto; */
+  grid-template-columns: 6rem 8.3rem 4.5rem 10rem 4.8rem 5.5rem 12rem;
+  grid-template-rows: repeat(5, 2.3rem);
+  grid-gap: .5rem .5rem;
+  align-items: center;
+  justify-items: end;
+  grid-auto-flow: column;
+
+  /* grid-template-areas:
+  'label0 system .      result result ttitle .      .'
+  'label1 input1 .      result result table  .      .'
+  'label2 input2 units1 notion notion table  .      .'
+  'label3 input3 units2 tbutt  tbutt  table  .      .'
+  'label4 input4 units3 tbutt  tbutt  table  .      .'
+  'visual visual visual visual visual visual visual visual'; */
+
+  grid-template-areas:
+  'label0 system .      result result .      .     '
+  'label1 input1 .      result result temptr .     '
+  'label2 input2 units1 notion notion image  image '
+  'label3 input3 units2 tbutt  tbutt  image  image '
+  'label4 input4 units3 tbutt  tbutt  .      .     ';
+
+}
+
+label[for='measurementSystemSwitch'] {grid-area: label0}
+label[for='material'] {grid-area: label1}
+label[for='length'] {grid-area: label2}
+label[for='width'] {grid-area: label3}
+label[for='thickness'] {grid-area: label4}
+.switchContainer{
+  grid-area: notion;
+  justify-self: center;
+  width: var(--switchWidth);
+  display: grid;
+  grid-auto-flow: row;
+  justify-content: center;
+  align-items: center;
+  /* transform: translateX(.6rem); */
+
+  overflow-x: clip;
+  background-color: #000;
+  border: .3rem solid #000f;
+  /* border-radius: 2rem; */
+
+  transition: grid-template-columns .5s, background-color .5s;
+}
+.switchContainer label {
+  width: 5.7rem;
+  height: 1rem;
+
+  color: #ffff;
+  text-align: center;
+  font-family: 'Saira';
+  /* font-weight: bold; */
+
+  user-select: none;
+}
+.switchContainer label:first-of-type {
+  justify-self: end;
+  transform: translateY(-.35rem);
+}
+.switchContainer label:last-of-type {
+  justify-self: start;
+  transform: translateY(-.35rem);
+}
+.switchSlide{
+  width: var(--switchSlideSize);
+  height: var(--switchSlideSize);
+  justify-self: center;
+
+  background-color: #dddf;
+  /* border: .1rem solid #333f; */
+}
+#system {
+	grid-area: system;
+}
+#notation {
+	grid-area: notion;
+	margin-right: .6rem;
+}
+label[for='notationswitch'] {
+	grid-area: notion;
+	/* justify-self: center; */
+	padding-left: 0rem;
+}
+
+
+#material {grid-area: input1;}
+#length {grid-area: input2;}
+#width {grid-area: input3;}
+#thickness {grid-area: input4;}
+
+#u1_value {grid-area: units1;}
+#u2_value {grid-area: units2;}
+#u3_value {grid-area: units3;}
+
+.g_main select, .g_main input {
+  justify-self: stretch;
+  margin-bottom: 0px !important;
+  box-sizing: border-box;
+}
+.g_main label , .g_main input {
+  font-size: 1.2rem;
+}
+.g_main select {
+  font-size: 0.9rem;
+}
+input[type='number'] {
+  font-family: "Courier New"
+  !important;
+}
+
+#answer_box{
+  grid-area: result;
+  display: grid;
+  box-sizing: border-box;
+  grid-template-areas:
+  'label  label'
+  'answer units ';
+  grid-template-columns: 10rem 4.6rem;
+  grid-template-rows: 1.2rem 2.3rem;
+  grid-gap: .5rem .5rem;
+  align-items: center;
+  justify-items: end;
+  grid-auto-flow: column;
+
+  /* background-color: #49f3; */
+  box-sizing: border-box;
+  padding: .3rem;
+  font-size: 1.2rem;
+}
+#answer_box > div:first-of-type {
+  grid-area: label;
+  justify-self: center;
+}
+#answer{
+
+  font-size: 1.5rem;
+  font-family: "Courier New";
+
+  transition: background 1s ease-out;
+  background: #fff0;
+}
+#ohm_units {
+  width: 100%;
+  height: 2.3rem;
+
+  font-size: 1.5rem;
+}
+p.temperature {
+	grid-area: temptr;
+	justify-self: start;
+}
+.attatchCelcius::after {
+	content: '20°C';
+}
+.attatchFarenheit::after {
+	content: '68°F';
+}
+
+
+input[value="Display in Table"] {
+  grid-area: tbutt;
+
+  color: #ffff !important;
+}
+div#notation {
+  grid-area: notion;
+}
+
+#ttitle {
+  grid-area: ttitle;
+  justify-self: start;
+  align-self: start;
+  margin-top: .6rem;
+	/* max-width: 22.7rem; */
+
+  background-color: #178f;
+  border: .2rem solid #111f;
+  opacity: 0;
+}
+#ttitle th {
+  padding: 0;
+}
+#t_datatable {
+  grid-area: table;
+  justify-self: start;
+  align-self: start;
+  max-height: 100%;
+  /* height: 100%; */
+  overflow-x: clip;
+  overflow-y: scroll;
+
+  background-color: #178f;
+  border: .2rem solid #111f;
+  opacity: 0;
+}
+#t_datatable td {
+  padding: 0;
+}
+table {
+	margin: 0 0 0 0 !important;
+}
+table, #ttitle {
+	max-width: 22.7rem;
+}
+td:nth-child(1), td:nth-child(4), td:nth-child(5), td:nth-child(6){
+  font-family: "Courier New";
+}
+th {
+  background-color: #5cf9;
+	/* border-width: 0; */
+}
+/* tr {
+	border-width: 0;
+} */
+tr:nth-child(2n) {
+  background-color: #0001 !important;
+}
+tr:nth-child(2n+1) {
+  background-color: #0003 !important;
+}
+
+th:nth-of-type(1), td:nth-of-type(1){
+  width: 7.5rem;
+  text-align: right;
+	border-right: 0 solid #0000 !important;
+}
+th:nth-of-type(2), td:nth-of-type(2){
+  width: 1.5rem;
+  text-align: left;
+	/* margin-left: 1rem; */
+	border-left: 0 solid #0000 !important;
+}
+th:nth-of-type(3), td:nth-of-type(3){
+  width: 7.3rem;
+  text-align: center;
+  border-left: .1rem solid #111f;
+}
+th:nth-of-type(4), td:nth-of-type(4){
+  width: 2.2rem;
+  text-align: center;
+  border-left: .1rem solid #111f;
+}
+th:nth-of-type(5), td:nth-of-type(5){
+  width: 2.2rem;
+  text-align: center;
+  border-left: .1rem solid #111f;
+}
+th:nth-of-type(6), td:nth-of-type(6){
+  width: 2.2rem;
+  text-align: center;
+  border-left: .1rem solid #111f;
+}
+}
+th:nth-of-type(7) {
+  width: ;
+  text-align: center;
+  border-left: .1rem solid #111f;
+}
+/* tr {
+	border-top: 1 !important;
+} */
+#bar_preview {
+  grid-area: visual;
+  overflow-x: scroll;
+  width: 10rem;
+	justify-self: start
+}
+img#barPreview {
+	grid-area: image;
+	justify-self: start;
+	align-self: start
+	height: 8rem;
+	width: 19rem;
+
+	background-image: url('https://drfengineeringservices.com/wp-content/uploads/2022/06/busbarPreview-300x112.jpg');
+}
+
+
+
+      /* Animation */
+.flash {
+  transition: background 0s !important;
+  background: #5cfd !important;
+}
+.switchL{
+  grid-template-columns:
+  .1rem
+  var(--switchSlideSize)
+  calc(var(--switchWidth) - var(--switchSlideSize));
+  background: #57fb;
+}
+.switchR{
+  grid-template-columns:
+  calc(var(--switchWidth) - var(--switchSlideSize))
+  var(--switchSlideSize)
+  .1rem;
+  background: #35ff;
+}
+.switchL .switchSlide {
+  animation: switchHandleShift .4s ease-in-out;
+}
+.switchR .switchSlide{
+  animation: switchHandleShift2 .4s ease-in-out;
+}
+@keyframes switchHandleShift {
+  0%{
+    rotate: 0deg;
+    border-radius: 0rem;
+  }50%{
+    border-radius: .5rem;
+  }100%{
+    rotate: -.5turn;
+    border-radius: 0rem;
+  }
+}
+@keyframes switchHandleShift2 {
+  0%{
+    rotate: 0deg;
+    border-radius: 0rem;
+  }50%{
+    border-radius: .5rem;
+  }100%{
+    rotate: .5turn;
+    border-radius: 0rem;
+  }
+}
+.enterStageRight {
+  animation: enterStageRight 1.2s ease alternate forwards;
+}
+@keyframes enterStageRight {
+  0% {
+    opacity: 0;
+    transform: translateX(120px);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.enterStageLeft {
+  animation: enterStageLeft 1.2s ease normal forwards;
+}
+@keyframes enterStageLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-120px);
+  }
+  to {
+    opacity: 1;
+  }
+}
+#t_datatable tr {
+  opacity: 0;
+  transform: translateX(-120px);
+}
+.enterStageLeftTransition {
+  transition: opacity .7s ease-out, transform .8s ease-out;
+  opacity: 1 !important;
+  transform: translateX(0px) !important;
+}
