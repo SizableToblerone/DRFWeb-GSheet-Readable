@@ -45,4 +45,4 @@ function initJacobSwitches(scanClass='toJacobSwitch') {
 
 	return switches.length;
 }
-// initJacobSwitches();
+initJacobSwitches();
