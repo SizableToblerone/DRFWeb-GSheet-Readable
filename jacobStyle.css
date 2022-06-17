@@ -1,0 +1,123 @@
+/* jacobStyle.css */
+
+/* Positioning/Sizing */
+	/* Responsive Layout */
+	/* Anti-WordPress */
+
+/* Appearance */
+	/* Anti-WordPress */
+
+/* Interactivity */
+	/* Transitions/Animations */
+	/* JavaScript-related formatting */
+.JacobSwitch {
+	display: grid;
+  width: var(--switchWidth);
+	height: var(--switchSlideSize);
+  align-items: center;
+  align-self: center;
+}
+.JacobSwitch > input[type='checkbox'] {
+	grid-area: 1/1;
+  width: var(--switchWidth);
+	height: var(--switchSlideSize);
+  justify-self: center;
+	margin: 0 .6rem 0 0;
+	box-sizing: content-box;
+}
+.switchContainer {
+  justify-self: center;
+  width: var(--switchWidth);
+	height: var(--switchSlideSize);
+  display: grid;
+  grid-auto-flow: row;
+  justify-content: center;
+  align-items: center;
+
+  overflow-x: clip;
+  border: .3rem solid #000f;
+
+  transition: grid-template-columns .5s, background-color .5s;
+	pointer-events: none;
+	user-select: none;
+}
+.switchContainer label {
+	/* width: 5.7rem; */
+  width: calc(var(--switchWidth) - .9rem);
+  height: 1rem;
+
+  color: #ffff;
+  text-align: center;
+  font-family: 'Saira';
+  /* font-weight: bold; */
+
+}
+.switchContainer label.l_left {
+	grid-area: 1/1;
+	justify-self: end;
+  transform: translateY(-.35rem);
+	padding-left: .6rem
+}
+.switchContainer label.l_right {
+	grid-area: 1/3;
+  justify-self: start;
+  transform: translateY(-.35rem);
+}
+label.switchSlide {
+	justify-self: center;
+	grid-area: 1/2;
+	width: var(--switchSlideSize);
+	height: var(--switchSlideSize);
+	/* justify-self: center; */
+
+	background-color: #dddf;
+}
+	/* Animation */
+
+.switchContainer {													/* switched right*/
+	grid-area: 1/1;
+  grid-template-columns:
+  calc(var(--switchWidth) - var(--switchSlideSize))
+  var(--switchSlideSize)
+  .01rem;
+  background: #35ff;
+}
+.switchChBox {
+	opacity: 0;
+	grid-area: 1/1;
+}
+.switchChBox:checked + .switchContainer { 	/* switched left*/
+	grid-template-columns:
+	.01rem
+	var(--switchSlideSize)
+	calc(var(--switchWidth) - var(--switchSlideSize));
+	background: #57fb;
+}
+.switchContainer label.switchSlide{
+  animation: switchHandleClockwise .4s ease-in-out;
+}
+.switchChBox:checked + .switchContainer label.switchSlide{
+	animation: switchHandleCountwise .4s ease-in-out;
+}
+@keyframes switchHandleClockwise {
+	0%{
+		rotate: 0deg;
+		border-radius: 0rem;
+		}50%{
+			border-radius: .5rem;
+			}100%{
+				rotate: .5turn;
+				border-radius: 0rem;
+			}
+		}
+@keyframes switchHandleCountwise {
+  0%{
+    rotate: 0deg;
+    border-radius: 0rem;
+  }50%{
+    border-radius: .5rem;
+  }100%{
+    rotate: -.5turn;
+    border-radius: 0rem;
+  }
+}
