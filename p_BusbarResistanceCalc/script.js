@@ -451,6 +451,5 @@ function camspin() {
 // createJacobSwitch('system', 'Imperial', 'Metric', '6.6rem');
 setTimeout(function () {
 	unitSwap();
-	initJacobSwitches();
 }, 500);
 // updateScene(12, 1.5, .35);
