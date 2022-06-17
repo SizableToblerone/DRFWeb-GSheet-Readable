@@ -10,6 +10,7 @@
   <meta http-equiv="X-Content-Type-Options" content="">
   <link rel="shortcut icon" href="/atom.ico" type="image/x-icon" />
   <link rel="stylesheet" href="busbar.css">
+  <link rel="stylesheet" href="../jacobStyle.css">
   <title>Busbar Resistance Calculator</title>
 </head>
 <body>
@@ -17,21 +18,24 @@
   <canvas id="bar_preview"></canvas>
 </div> -->
 <div class="gridCenterer">
-<div class="g_main" id="g_main">
+<div class="g_main" id="g_main" oninput="calculate()">
   <label for="material">Material:</label>
   <label for="length">Length:</label>
   <label for="width">Width:</label>
   <label for="thickness">Thickness:</label>
 
-	<label for="measurementSystemSwitch">System:</label>
+	<!-- <label for="measurementSystemSwitch">System:</label>
   <div name="measurementSystemSwitch" class="switchContainer switchL"
   onclick="unitSwap()" id='system'>
     <label style="padding-left: .6rem">Imperial</label>
     <div class="switchSlide"></div>
     <label style="padding-right: .6rem">Metric</label>
+  </div> -->
+  <div id='system' class="toJacobSwitch">
+	 Imperial, Metric, 6.6rem
   </div>
 
-  <select id="material" oninput="calculate()">
+  <select id="material">
     <option value='copper'>Copper</option>
     <option value='aluminum'>Aluminum</option>
     <option value='gold'>Gold</option>
@@ -44,34 +48,34 @@
     <option value='calorite'>Calorite</option>
     <option value='carbon'>Carbon</option>
   </select >
-  <input type="number" min=0 step=1 id="length" value=12
-    oninput="calculate()">
-  <input type="number" min=.1 step=.1 id="width" value=2
-    oninput="calculate()">
-  <input type="number" min=.05 step=.05 id=thickness value=.5
-    oninput="calculate()">
+  <input type="number" min=0 step=1 id="length" value=12>
+  <input type="number" min=.1 step=.1 id="width" value=2>
+  <input type="number" min=.05 step=.05 id=thickness value=.5>
 
-  <select oninput='calculate()' id='u1_value'></select>
-  <select oninput='calculate()' id='u2_value'></select>
-  <select oninput='calculate()' id='u3_value'></select>
+  <select id='u1_value'></select>
+  <select id='u2_value'></select>
+  <select id='u3_value'></select>
 
 
 
-  <label for="notationswitch">Notation</label>
-  <div name="numericNotationSwitch" class="switchContainer switchL"
-  onclick="switchSwap(this)" id='notation'>
-    <label style="padding-left: .6rem">Decimal</label>
-    <div class="switchSlide"></div>
-    <label style="padding-right: .6rem">Scientific </label>
-  </div>
+  <label for="notationChBox" class="l_notation">Notation</label>
+	<div id="notation" class="JacobSwitch">
+		<input type="checkbox" class="switchChBox" id="notationChBox">
+	  <div class="switchContainer">
+	    <label class="l_left">Decimal</label>
+	    <label class="switchSlide"></label>
+	    <label class="l_right">Scientific</label>
+	  </div>
+	</div>
+
 
 	<img id="barPreview" src="https://drfengineeringservices.com/wp-content/uploads/2022/06/busbarPreview-300x112.jpg"
 	 alt="Image reminding the user which dimensions are represended by the width, thickness, and length attribues. "/>
 
-	 <div id="answer_box">
+	 <div id="answer_box" class="answer_box">
 		 <div><u>Resistance</u></div>
 		 <div id="answer" class='numFormatable'>0.0</div>
-		 <select id="ohm_units" oninput="calculate()">
+		 <select id="ohm_units">
 			 <option value='Ω'>Ω</option>
 			 <option value='mΩ'>mΩ</option>
 			 <option value='μΩ' selected>μΩ</option>
@@ -115,6 +119,16 @@
 </div>
 </div>
 
+<!-- <div id="answer_box2" class="answer_box">
+	<div><u>Resistance</u></div>
+	<div id="answer" class='numFormatable'>0.0</div>
+	<select id="ohm_units" oninput="calculate()">
+		<option value='Ω'>Ω</option>
+		<option value='mΩ'>mΩ</option>
+		<option value='μΩ' selected>μΩ</option>
+	</select>
+</div> -->
+
 
 <!-- camera spin debug controls -->
 <!-- <input type="range" id="camx" min=-50 max=50 oninput="camspin()">
@@ -134,5 +148,6 @@ src="https://raw.githubusercontent.com/mrdoob/three.js/dev/build/three.min.js">
 </script> -->
 <!-- <script src="FontLoader.js"></script>
 <script src="TextGeometry.js"></script> -->
-<script src="jabridge.js"></script>
+<script src="../jabridge.js"></script>
+<script src="../jacobSwitch.js"></script>
 <script src="script.js"></script>

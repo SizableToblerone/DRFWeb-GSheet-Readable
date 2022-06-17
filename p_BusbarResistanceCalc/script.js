@@ -37,7 +37,7 @@ function calculate() {
     document.getElementById('u3_value').value;
   let Ωunit =
     document.getElementById('ohm_units').value;
-  let temperature = 20;
+  let temperature = 50;
   let area_across= width * thickness;
 
 console.log(`
@@ -87,9 +87,11 @@ console.log(`
     calorite:"?",
     carbon:"?"}
 	α_20 = tempCoeffs[$$('#material').value];
-	ΔT = Math.abs(20-temperature);
-	busbarResistance *= 1 + α_20 * ΔT
-	console.log(`busbarResistance at ${temperature}°C: ${busbarResistance}`);
+	ΔT = temperature-20;
+	// ΔT = 20-temperature;
+	busbarResistance *= 1 + (α_20 * ΔT)
+	console.log(`busbarResistance at ${temperature}°C: ${busbarResistance}
+		ΔT: ${ΔT}`);
 
   formatAll();
 	// 20°C
@@ -105,23 +107,23 @@ function formatAll() {
   let numFormatables = $('.numFormatable');
   let Ωunit_factor = { 'Ω':1, 'mΩ':1000, 'μΩ':1000000 };
 
-  if ($$('#notation').classList.contains('switchL')) { // scientific notation
-    numFormatables.forEach((element, i) => {
-      resistance = resultsArray[i] * Ωunit_factor[$$('#ohm_units').value];
-      element.innerHTML = resistance.toExponential(6);
-    });
-  } else { // standard notation
-    if($$('#ohm_units').value=='Ω') {
-      numFormatables.forEach((element, i) => {
-        resistance = resultsArray[i] * Ωunit_factor[$$('#ohm_units').value];
-        element.innerHTML = resistance.toFixed(6);
-      });
-    } else {
-      numFormatables.forEach((element, i) => {
-        resistance = resultsArray[i] * Ωunit_factor[$$('#ohm_units').value];
-        element.innerHTML = resistance.toFixed(4);
-      });
-    }
+  if ($$('#notationChBox').checked) { // standard notation
+		if($$('#ohm_units').value=='Ω') {
+			numFormatables.forEach((element, i) => {
+				resistance = resultsArray[i] * Ωunit_factor[$$('#ohm_units').value];
+				element.innerHTML = resistance.toFixed(6);
+			});
+		} else {
+			numFormatables.forEach((element, i) => {
+				resistance = resultsArray[i] * Ωunit_factor[$$('#ohm_units').value];
+				element.innerHTML = resistance.toFixed(4);
+			});
+		}
+  } else { // scientific notation
+		numFormatables.forEach((element, i) => {
+			resistance = resultsArray[i] * Ωunit_factor[$$('#ohm_units').value];
+			element.innerHTML = resistance.toExponential(6);
+		});
   }
 
   let tableUnits = $('.tableUnit');
@@ -153,21 +155,21 @@ function unitSwap() {
     $$("#u2_value").innerHTML = cm_mm_select;
     $$("#u3_value").innerHTML = cm_mm_select;
   }
-  switchSwap($$('#system'));
+  // switchSwap($$('#system'));
   calculate();
 }
 
-function switchSwap(element) {
-  if(element.classList.contains('switchL')) {
-    element.classList.remove('switchL');
-    element.classList.add('switchR');
-  } else {
-    element.classList.remove('switchR');
-    element.classList.add('switchL');
-  }
-
-  calculate();
-}
+// function switchSwap(element) {
+//   if(element.classList.contains('switchL')) {
+//     element.classList.remove('switchL');
+//     element.classList.add('switchR');
+//   } else {
+//     element.classList.remove('switchR');
+//     element.classList.add('switchL');
+//   }
+//
+//   calculate();
+// }
 
 function storeInTable(){
   $$("#t_databody").innerHTML +=
@@ -445,8 +447,10 @@ function camspin() {
   renderer.render(scene, camera);
 }
 // init();
+// $$('#system').innerHTML =
+// createJacobSwitch('system', 'Imperial', 'Metric', '6.6rem');
 setTimeout(function () {
 	unitSwap();
-
+	initJacobSwitches();
 }, 500);
 // updateScene(12, 1.5, .35);
